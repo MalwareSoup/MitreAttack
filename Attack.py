@@ -176,15 +176,33 @@ class Attack:
 		else:
 			return resultList
 
-	def search(self, category, query):
+	def search(self, query):
 		# query = [{'field': field, 'value': value}]
 		resultList = []
-		if category.lower() == 'technique':
-			pass
-		if category.lower() == 'group':
-			pass
-		if category.lower() == 'software':
-			pass
+		numQueries = len(query)
+		for techKey in self.allTechniques.keys():
+			matches = 0
+			for q in query:
+				if q['field'].lower() == 'data sources':
+					for source in self.allTechniques[techKey].data_sources:
+						if source.lower().find(q['value'].lower()) != -1:
+							matches += 1
+							continue
+				elif q['field'].lower() == 'tactics':
+					for tacKey in self.allTechniques[techKey].tactics.keys():
+						current = self.allTechniques[techKey].tactics[tacKey].fulltext.lower()
+						if current.find(q['value'].lower()) != -1:
+							matches += 1
+							continue
+				else:
+					current = self.allTechniques[techKey].displaytitle.lower()
+					if current.find(q['value'].lower()) != -1:
+						matches += 1
+						continue
+			if matches == numQueries:
+				if self.allTechniques[techKey] not in resultList:
+					resultList.append(self.allTechniques[techKey])
+
 		if len(resultList) == 1:
 			return resultList[0]
 		else:

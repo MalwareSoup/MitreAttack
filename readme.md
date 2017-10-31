@@ -1,8 +1,6 @@
 # MitreAttack
 Python wrapper for the Mitre ATT&amp;CK framework API
 
-*Still raw, work in progress*
-
 ## Methods
 ```python
 from MitreAttack import Attack
@@ -16,6 +14,11 @@ att.findGroup('FIN') # returns a single group or a list of groups that have an a
 
 att.findSoftware('mimikatz') # returns a single software item or a list of software that has an alias matching the search string
 S0002: Software: Mimikatz
+
+# search takes a list of dicts containing a field and a value and searches for matching techniques
+# currently searchable fields are data sources, tactics, and displaytitle
+att.search([{'field':'data sources','value':'registry'},{'field':'tactics','value':'execution'}])
+[T1086: PowerShell, T1035: Service Execution, T1138: Application Shimming, T1117: Regsvr32, T1072: Third-party Software]
 ```
 
 ## Usage Examples
