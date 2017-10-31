@@ -180,44 +180,11 @@ class Attack:
 		# query = [{'field': field, 'value': value}]
 		resultList = []
 		if category.lower() == 'technique':
-			for techniqueKey in self.allTechniques.keys():
-				for search in query:
-					if search['field'].lower() == 'data sources':
-						for source in self.allTechniques[techniqueKey].data_sources:
-							if source.lower().find(search['value'].lower()) != -1:
-								if self.allTechniques[techniqueKey] not in resultList:
-									resultList.append(self.allTechniques[techniqueKey])
-					else:
-						attr = getattr(self.allTechniques[techniqueKey], search['field'])
-						if attr.lower().find(search['value'].lower()) != -1:
-							if self.allTechniques[techniqueKey] not in resultList:
-								resultList.append(self.allTechniques[techniqueKey])
+			pass
 		if category.lower() == 'group':
-			for groupKey in self.allGroups.keys():
-				for search in query:
-					if(search['field'].lower() == "aliases"):
-						for alias in self.allGroups[groupKey].aliases:
-							if alias.lower().find(search['value'].lower()) != -1:
-								if self.allGroups[groupKey] not in resultList:
-									resultList.append(self.allGroups[groupKey])
-					else:
-						attr = getattr(self.allGroups[groupKey], search['field'])
-						if attr.lower().find(search['value'].lower()) != -1:
-							if self.allGroups[groupKey] not in resultList:
-								resultList.append(self.allGroups[groupKey])
+			pass
 		if category.lower() == 'software':
-			for search in query:
-				for softwareKey in self.allSoftware.keys():
-					if(search['field'].lower() == "aliases"):
-						for alias in self.allSoftware[softwareKey].aliases:
-							if alias.lower().find(search['value'].lower()) != -1:
-								if self.allSoftware[softwareKey] not in resultList:
-									resultList.append(self.allSoftware[softwareKey])
-					else:
-						attr = getattr(self.allSoftware[softwareKey], search['field'])
-						if attr.lower().find(search['value'].lower()) != -1:
-							if self.allSoftware[softwareKey] not in resultList:
-								resultList.append(self.allSoftware[softwareKey])
+			pass
 		if len(resultList) == 1:
 			return resultList[0]
 		else:
