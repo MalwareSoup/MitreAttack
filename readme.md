@@ -1,6 +1,8 @@
 # MitreAttack
 Python wrapper for the Mitre ATT&amp;CK framework API
 
+*My python is sloppy, pull requests are welcome!*
+
 ## Methods
 ```python
 from MitreAttack import Attack
