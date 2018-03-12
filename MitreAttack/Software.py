@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Software:
 	ID = ""
 	displaytitle = ""
@@ -6,10 +8,10 @@ class Software:
 	aliases = []
 
 	def __init__(self, ID, displaytitle, description, fullurl, aliases, techniques):
-		self.ID = ID
-		self.displaytitle = displaytitle
-		self.description = description
-		self.fullurl = fullurl
+		self.ID = ID.encode('ascii','replace')
+		self.displaytitle = displaytitle.encode('ascii','replace')
+		self.description = description.encode('ascii','replace')
+		self.fullurl = fullurl.encode('ascii','replace')
 		self.aliases = aliases
 		self.techniques = {}
 		self.groups = {}
@@ -17,10 +19,10 @@ class Software:
 			self.techniques[tech['fulltext'].split('/')[1]] = tech
 
 	def __str__(self):
-		return "{}: {}".format(self.ID, self.displaytitle)
+		return "{}: {}".format(self.ID.encode('ascii','replace'), self.displaytitle.encode('ascii','replace'))
 
 	def __repr__(self):
-		return "{}: {}".format(self.ID, self.displaytitle)
+		return "{}: {}".format(self.ID.encode('ascii','replace'), self.displaytitle.encode('ascii','replace'))
 
 	def search(self,query):
 		pass
